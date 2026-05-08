@@ -14,12 +14,8 @@ function NewPlantForm({ onAddPlant }) {
     });
   }
 
-}
-function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    
-    // The test expects the price to be a string, 
-    // so we send formData as-is.
     const newPlant = {
       name: formData.name,
       image: formData.image,
@@ -34,11 +30,11 @@ function handleSubmit(e) {
       .then((r) => r.json())
       .then((savedPlant) => {
         onAddPlant(savedPlant);
-        setFormData({ name: "", image: "", price: "" }); // Reset form
+        setFormData({ name: "", image: "", price: "" }); 
       });
-  }
+  } // <--- Check that this brace closes handleSubmit, NOT the whole component
 
-  return (
+  return ( // <--- This must be INSIDE the NewPlantForm function
     <div className="new-plant-form">
       <h2>New Plant</h2>
       <form onSubmit={handleSubmit}>
@@ -49,6 +45,6 @@ function handleSubmit(e) {
       </form>
     </div>
   );
-
+} // <--- This closes the whole component
 
 export default NewPlantForm;
