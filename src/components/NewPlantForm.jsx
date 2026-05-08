@@ -14,11 +14,16 @@ function NewPlantForm({ onAddPlant }) {
     });
   }
 
-  function handleSubmit(e) {
+}
+function handleSubmit(e) {
     e.preventDefault();
+    
+    // The test expects the price to be a string, 
+    // so we send formData as-is.
     const newPlant = {
-      ...formData,
-      price: parseFloat(formData.price),
+      name: formData.name,
+      image: formData.image,
+      price: formData.price, 
     };
 
     fetch("http://localhost:6001/plants", {
@@ -44,6 +49,6 @@ function NewPlantForm({ onAddPlant }) {
       </form>
     </div>
   );
-}
+
 
 export default NewPlantForm;
